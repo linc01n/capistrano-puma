@@ -16,7 +16,7 @@ bind "<%=fetch(:puma_bind)%>"
 <% end %>
 
 <% if fetch(:puma_control) %>
-activate_control_app "fetch(:puma_control)", :auth_token => "fetch(:puma_control_token)"
+activate_control_app "<%= fetch(:puma_control) %>", :auth_token => "<%= fetch(:puma_control_token) %>"
 <% end %>
 
 workers <%= puma_workers %>
