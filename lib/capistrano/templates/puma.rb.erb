@@ -9,7 +9,7 @@ stdout_redirect '<%=fetch(:puma_access_log)%>', '<%=fetch(:puma_error_log)%>', t
 threads <%=fetch(:puma_threads).join(',')%>
 <% if fetch(:puma_binds) %>
   <% fetch(:puma_binds).each do |bind| %>
-bind "#{bind}"
+bind "<%= bind %>"
   <% end %>
 <% else %>
 bind "<%=fetch(:puma_bind)%>"
