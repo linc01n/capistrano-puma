@@ -7,7 +7,14 @@ pidfile "<%=fetch(:puma_pid)%>"
 state_path "<%=fetch(:puma_state)%>"
 stdout_redirect '<%=fetch(:puma_access_log)%>', '<%=fetch(:puma_error_log)%>', true
 threads <%=fetch(:puma_threads).join(',')%>
+<% if fetch(:puma_binds) %>
+  <% fetch(:puma_binds).each do |bind| %>
+bind "#{bind}"
+  <% end %>
+<% else %>
 bind "<%=fetch(:puma_bind)%>"
+<% end %>
+
 <% if fetch(:puma_control) %>
 activate_control_app "fetch(:puma_control)", :auth_token => "fetch(:puma_control_token)"
 <% end %>
